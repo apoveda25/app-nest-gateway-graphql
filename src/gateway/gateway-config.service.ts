@@ -21,9 +21,13 @@ export class GatewayConfigService implements GatewayOptionsFactory {
   createGatewayOptions(): GatewayModuleOptions {
     const willSendRequest = this.willSendRequest;
     const didReceiveResponse = this.didReceiveResponse;
+    const serviceList = this.configService.get('apollo_key')
+      ? {}
+      : { serviceList: this.configService.get('services') };
+
     return {
       gateway: {
-        serviceList: this.configService.get('services'),
+        ...serviceList,
         buildService({ url }) {
           return new RemoteGraphQLDataSource({
             url,

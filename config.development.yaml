@@ -9,3 +9,5 @@ services:
 jwt:
   secret: 'secret'
   expiresIn: '6h'
+
+apollo_key: 'service:app-nest-knv8p1:gMZOWfrZQ8RsSZTr6J3V8w'

@@ -10,7 +10,11 @@ const YAML_CONFIG_FILENAME =
     : 'config.development.yaml';
 
 export default () => {
-  return yaml.load(
+  const config = yaml.load(
     readFileSync(join(`${__dirname}/../../`, YAML_CONFIG_FILENAME), 'utf8'),
   );
+
+  if (config.apollo_key) process.env.APOLLO_KEY = config.apollo_key;
+
+  return config;
 };
